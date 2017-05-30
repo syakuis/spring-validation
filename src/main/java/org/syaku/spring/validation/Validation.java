@@ -1,10 +1,9 @@
 package org.syaku.spring.validation;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Collection or Array 타입의 객체를 검증하기 위해 사용된다.
@@ -12,8 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @site http://syaku.tistory.com
  * @since 2017. 5. 29.
  */
-@Target({ PARAMETER })
-@Retention(RUNTIME)
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Validation {
 	Class<?>[] value() default {};
 }

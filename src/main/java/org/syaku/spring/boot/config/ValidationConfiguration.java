@@ -8,7 +8,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.syaku.spring.validation.ValidationAspect;
-import org.syaku.spring.validation.ValidationResponseAspect;
 
 /**
  * @author Seok Kyun. Choi. 최석균 (Syaku)
@@ -18,11 +17,6 @@ import org.syaku.spring.validation.ValidationResponseAspect;
 @Configuration
 public class ValidationConfiguration {
 	private MessageSource messageSource;
-
-	@Bean
-	public ValidationResponseAspect validationResponseAspect() {
-		return new ValidationResponseAspect();
-	}
 
 	@Bean
 	public ValidationAspect validationAspect() {

@@ -33,9 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -147,7 +145,8 @@ public class FormControllerTest {
 		)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
+				.andExpect(jsonPath("$.error", is(true)))
+				.andExpect(jsonPath("$.statusCode", is(StatusCode.FormValidation.name())));
 
 		mockMvc.perform(put("/validation")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -156,17 +155,8 @@ public class FormControllerTest {
 		)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
-	}
-
-	@Test
-	public void ajax_validation() throws Exception {
-		Form form = new Form();
-		List<Store> stores = new ArrayList<>();
-		stores.add(new Store("", "good"));
-		form.setStores(stores);
-
-		ObjectMapper mapper = new ObjectMapper();
+				.andExpect(jsonPath("$.error", is(true)))
+				.andExpect(jsonPath("$.statusCode", is(StatusCode.FormValidation.name())));
 
 		mockMvc.perform(delete("/validation")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -175,7 +165,8 @@ public class FormControllerTest {
 		)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
+				.andExpect(jsonPath("$.error", is(true)))
+				.andExpect(jsonPath("$.statusCode", is(StatusCode.FormValidation.name())));
 	}
 
 	@Test
@@ -199,7 +190,8 @@ public class FormControllerTest {
 		)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
+				.andExpect(jsonPath("$.error", is(true)))
+				.andExpect(jsonPath("$.statusCode", is(StatusCode.FormValidation.name())));
 
 		mockMvc.perform(put("/validation/forms")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -208,16 +200,8 @@ public class FormControllerTest {
 		)
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
-
-		mockMvc.perform(delete("/validation/forms")
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON)
-				.content(content)
-		)
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.error", is(true)));
+				.andExpect(jsonPath("$.error", is(true)))
+				.andExpect(jsonPath("$.statusCode", is(StatusCode.FormValidation.name())));
 	}
 
 }

@@ -1,16 +1,13 @@
 package org.syaku.spring.validation;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.Validator;
@@ -18,8 +15,6 @@ import org.springframework.validation.Validator;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
 import java.util.Collection;
 import java.util.Map;
 
@@ -29,14 +24,9 @@ import java.util.Map;
  * @since 2017. 5. 16.
  */
 @Aspect
-public class ValidationAspect implements Ordered {
+public class ValidationAspect {
 	private static final Logger logger = LoggerFactory.getLogger(ValidationAspect.class);
 	private Validator validator;
-
-	@Override
-	public int getOrder() {
-		return 1;
-	}
 
 	@Autowired
 	public void setValidator(Validator validator) {

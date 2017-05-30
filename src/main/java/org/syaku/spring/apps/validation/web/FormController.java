@@ -69,7 +69,6 @@ public class FormController {
 	@PostMapping
 	@ResponseBody
 	public SuccessHandler ajaxPost(@Validated @RequestBody Form form, BindingResult bindingResult) {
-
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException(bindingResult);
 		}
@@ -121,19 +120,6 @@ public class FormController {
 			throw new ValidationException(bindingResult);
 		}
 
-		return new SuccessHandler("success");
-	}
-
-	/**
-	 * 일반적으로 {@link Validation} 만 사용하면 될 작업이지만 설명을 위해 추가하였다.
-	 * 검증 결과를 얻기위해 {@link BindingResult} 선언하였고 결과를 자동 처리하기 위해 {@link ValidBindingResult} 선언하였다.
-	 * @param forms
-	 * @param bindingResult
-	 * @return
-	 */
-	@DeleteMapping(value = "/forms")
-	@ResponseBody
-	public SuccessHandler ajaxDeleteForms(@Validation @RequestBody List<Form> forms, @ValidBindingResult BindingResult bindingResult) {
 		return new SuccessHandler("success");
 	}
 }

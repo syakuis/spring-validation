@@ -1,8 +1,8 @@
-# Spring Validation
+# Spring Validation : 데이터 유효성 검사
 
 spring framework, hibernate-validator
 
-스프링 프레임워크의 유효성 검증을 보다 유용하게 기능을 확장한 라이브러리입니다.
+스프링 프레임워크의 유효성 검증을 보다 유용하게 기능을 확장한 튜토리얼이다.
 
 
 ### 기능
@@ -36,13 +36,6 @@ Bean Conext Configuration
 ```java
 @Configuration
 public class ValidationConfiguration {
-	private MessageSource messageSource;
-
-	// @ValidBindingResult 선언적인 방식을 적용한다.
-	@Bean
-	public ValidationResponseAspect validationResponseAspect() {
-		return new ValidationResponseAspect();
-	}
 
 	// @Validation 선언적인 방식을 적용한다.
 	@Bean
@@ -50,15 +43,6 @@ public class ValidationConfiguration {
 		return new ValidationAspect();
 	}
 
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:org/syaku/spring/i18n/message");
-
-		this.messageSource = messageSource;
-
-		return messageSource;
-	}
 
 	// 메세지 메서드를 간편하게 사용하기 위해 필요...
 	@Bean
@@ -136,7 +120,7 @@ public String formPost(Model model, @Validated Form form, BindingResult bindingR
 ```java
 @PutMapping
 @ResponseBody
-public SuccessHandler ajaxPut(@Validated @RequestBody Form form, @ValidBindingResult BindingResult bindingResult) {
+public SuccessHandler ajaxPut(@Validated @RequestBody Form form) {
 	return new SuccessHandler("success");
 }
 
