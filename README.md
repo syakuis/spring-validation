@@ -4,6 +4,7 @@ spring framework, hibernate-validator
 
 스프링 프레임워크의 유효성 검증을 보다 유용하게 기능을 확장한 튜토리얼이다.
 
+![](http://i.imgur.com/vzIMUUZ.gif)
 
 ### 기능
 
